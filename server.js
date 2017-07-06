@@ -9,7 +9,7 @@ import {
   GraphQLString,
 } from 'graphql';
 
-const schema = fs.readFileSync('schema.graphql', 'utf8');
+const typeDefs = fs.readFileSync('schema.graphql', 'utf8');
 const resolvers = {
   Query: {
     viewer(root, args, context) {
@@ -18,17 +18,13 @@ const resolvers = {
   },
 }
 
-const executableSchema = makeExecutableSchema({
-  typeDefs: schema,
-  resolvers,
-});
-
 const PORT = 3000;
-
 const app = express();
 
 // bodyParser is needed just for POST.
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: executableSchema }));
+app.use('/graphql', bodyParser.json(), graphqlExpress({
+  schema: makeExecutableSchema({ typeDefs, resolvers }),
+}));
 
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
