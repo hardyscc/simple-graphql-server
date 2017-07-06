@@ -1,0 +1,13 @@
+type Query {
+  viewer: User
+}
+
+# A person who uses our app
+type User {
+  # The unique Identifier of the user
+  id: String
+
+  # The name of the user
+  name: String
+}
+
