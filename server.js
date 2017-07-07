@@ -38,5 +38,5 @@ app.use('/graphiql', graphiqlExpress({
 }));
 
 app.listen(PORT, () => {
-    console.log(`Graphql Server is now running on http://localhost:${PORT}/graphql`); // eslint-disable-line no-console
+  console.log(`Graphql Server is now running on http://localhost:${PORT}/graphql`);
 });
